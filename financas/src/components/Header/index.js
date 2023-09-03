@@ -8,11 +8,18 @@ import {
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { MotiView, MotiText } from 'moti'
+import { useNavigation } from '@react-navigation/native';
 
 
 statusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22 : 64;
 
 export default function Header({name}){
+    const navigation = useNavigation();
+
+    const navegarParaTela = (nomeDaTela) => {
+      navigation.navigate(nomeDaTela);
+    };
+
     return(
         <View style={styles.container}>
             <MotiView style={styles.content}
@@ -45,7 +52,7 @@ export default function Header({name}){
 
                 >{name}</MotiText>
 
-                <TouchableOpacity activeOpacity={0.7}style={styles.btnUser}>
+                <TouchableOpacity activeOpacity={0.7}style={styles.btnUser} onPress={() => navegarParaTela('Conta')}>
                     <Feather name="user" size={27} color={'#fff'}/>
                 </TouchableOpacity>
             </MotiView>
